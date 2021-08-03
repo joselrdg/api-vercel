@@ -8,7 +8,6 @@ const formController = require('../controllers/form.controller')
 // router.get('/', authMiddleware.isAuthenticated, usersController.user)
 
 router.post('/form/contact', formController.doEmail)
-router.get('/', formController.getAll)
 
 
 

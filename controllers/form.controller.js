@@ -12,8 +12,7 @@ const transporter = nodemailer.createTransport({
 })
 
 module.exports.getAll = (req, res, next) => {
-
-  res.json('ok');
+  res.json({message: 'ok'});
 };
 
 module.exports.doEmail = (req, res, next) => {
