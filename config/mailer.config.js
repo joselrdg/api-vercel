@@ -90,6 +90,11 @@ transporter.sendMail({
                 <td align="center" style="font-size:0px;padding:0 25px;padding-top:30px;word-break:break-word;">                  
       <div style="font-family:Arial;font-size:18px;line-height:1;text-align:center;color:#000000;">Name:<br> ${data.name}</div>
                  </td>
+              </tr>   
+              <tr>
+                <td align="center" style="font-size:0px;padding:0 25px;padding-top:30px;word-break:break-word;">                  
+      <div style="font-family:Arial;font-size:18px;line-height:1;text-align:center;color:#000000;">Name:<br> ${data.email}</div>
+                 </td>
               </tr>            
               <tr>
               <td align="center" style="font-size:0px;padding:0 25px;padding-top:30px;word-break:break-word;">                  
