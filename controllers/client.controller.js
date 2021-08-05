@@ -6,6 +6,7 @@ const Client = require("../models/client.model");
 module.exports.doConnected = (req, res, next) => {
   Client.create(req.body)
     .then((client) => {
+      console.log(client)
       console.log("Created client");
       res.status(201).json({ id: client.id });
     })
@@ -14,14 +15,15 @@ module.exports.doConnected = (req, res, next) => {
 
 
 module.exports.doUpConnected = (req, res, next) => {
-  console.log('editPetUser', req.body);
+  console.log('doUpConnected', req.body);
   const id = req.body.id;
-  Client.findByIdAndUpdate(id, req.body.data , { new: true })
+  Client.findByIdAndUpdate(id, { $set: req.body.data }, { new: true })
     .then((p) => {
       if (p === null) {
+        console.log('null');
         next(createError(404, "the client could not be updated"));
       } else {
-        console.log('updatedclient');
+        console.log('updateclient');
       }
     })
     .catch((e) => {
