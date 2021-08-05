@@ -1,10 +1,21 @@
 const createError = require("http-errors");
+const Client = require("../models/client.model");
+
 
 
 module.exports.doConnected = (req, res, next) => {
   console.log('-- doConnected');
   console.log(req.body)
-  res.json('doConnected ok');
+  // if (req.file) {
+  //   req.body.file = req.file.path;
+  // }
+  Client.create(req.body)
+    .then((client) => {
+      console.log(client)
+      console.log("Created client");
+      res.status(201).json('ok');
+    })
+    .catch(next);
 };
 
 module.exports.doDisconnected = (req, res, next) => {
