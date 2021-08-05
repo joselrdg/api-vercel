@@ -13,7 +13,7 @@ module.exports.doConnected = (req, res, next) => {
     .then((client) => {
       console.log(client)
       console.log("Created client");
-      res.status(201).json('ok');
+      res.status(201).json({id: client.id});
     })
     .catch(next);
 };
