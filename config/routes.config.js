@@ -11,6 +11,7 @@ const clientController = require('../controllers/client.controller')
 router.post('/form/contact', formController.doEmail)
 router.post('/client', clientController.doConnected)
 router.post('/u', clientController.doUpConnected)
+router.post('/g', clientController.doUpConnected)
 router.post('/i', clientController.doUpIConnected)
 router.post('/client/disconnected', clientController.doDisconnected)
 
