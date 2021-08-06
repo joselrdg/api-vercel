@@ -3,6 +3,10 @@ const mongoose = require("mongoose");
 const clientSchema = mongoose.Schema(
   {
     startdate: Date,
+    screen: {
+      width: Number,
+      height: Number
+    },
     geolocation: {
       position: {
         latitude: Number,
