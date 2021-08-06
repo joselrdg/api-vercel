@@ -22,6 +22,7 @@ module.exports.doUpConnected = (req, res, next) => {
         next(createError(404, "the client could not be updated"));
       } else {
         console.log('updateclient');
+      res.status(201).json('ok');
       }
     })
     .catch((e) => {
