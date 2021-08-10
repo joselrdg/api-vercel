@@ -1,39 +1,55 @@
 const createError = require("http-errors");
 const Client = require("../models/client.model");
+const { lookup } = require('geoip-lite');
+// const ipapi = require('ipapi.co');
+const requestIp = require('request-ip');
 
 
 
 module.exports.doConnected = (req, res, next) => {
-  Client.create(req.body)
+  let query = req.body
+  const clientIp = requestIp.getClientIp(req)
+  // const callback = function(res){
+  //  let   geo = res;
+  //   query.ipapi = geo
+  //   // return geo
+  // };
+  // const aa = ipapi.location(callback)
+  query.requestip = clientIp
+  console.log(query);
+
+
+  Client.create(query)
     .then((client) => {
-      console.log("Created client");
       res.status(201).json({ id: client.id });
     })
     .catch(next);
 };
 
 
+
 module.exports.doUpConnected = (req, res, next) => {
+  let query = req.body.data;
+  if (req.body.data.ipify) {
+    const ip = req.body.data.ipify.ip
+    const geoip = lookup(ip);
+    query.geoip = geoip
+  }
   const id = req.body.id;
-  Client.findByIdAndUpdate(id, { $set: req.body.data }, { new: true })
+  Client.findByIdAndUpdate(id, { $set: query }, { new: true })
     .then((p) => {
       if (p === null) {
-        console.log('null');
         next(createError(404, "the client could not be updated"));
       } else {
-        console.log('updateclient');
-      res.status(201).json('ok');
+        res.status(201).json('ok');
       }
     })
     .catch((e) => {
-      console.log("error actualizar");
       next(e);
     });
 };
 
 module.exports.doDisconnected = (req, res, next) => {
-  console.log('-- doDisconnected');
-  console.log(req.body)
   res.json('doDisconnected ok');
 };
 
