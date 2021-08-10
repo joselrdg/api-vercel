@@ -16,6 +16,7 @@ module.exports.get = (req, res, next) => {
 };
 
 module.exports.aunthenticate = (req, res, next) => {
+  console.log("aunthenticate ", req.body)
   const { email, password } = req.body;
   User.findOne({ email: email }).then((user) => {
     if (!user) {

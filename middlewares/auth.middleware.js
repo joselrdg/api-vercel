@@ -4,7 +4,7 @@ const createError = require("http-errors");
 module.exports.isAuthenticated = (req, res, next) => {
   // Get authorization header
   const authHeader = req.header("Authorization");
-
+console.log(req.header("Authorization"))
   if (authHeader) {
     // Check auth protocol
     const authProtocol = authHeader.split(" ")[0];
