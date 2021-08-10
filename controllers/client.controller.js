@@ -20,7 +20,7 @@ module.exports.doConnected = (req, res, next) => {
 
     ipapi.location(callback)
   }
-  let query = req.body
+  const query = req.body
   // const clientIp = requestIp.getClientIp(req)
   // query.requestip = clientIp
 

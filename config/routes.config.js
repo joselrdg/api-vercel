@@ -16,7 +16,7 @@ router.get('/infoclient/list', authMiddleware.isAuthenticated, infoclientControl
 router.post('/form/contact', formController.doEmail)
 router.post('/client', clientController.doConnected)
 // router.post('/u', clientController.doUpConnected)
-router.post('/client/disconnected', clientController.doDisconnected)
+// router.post('/client/disconnected', clientController.doDisconnected)
 
 
 
