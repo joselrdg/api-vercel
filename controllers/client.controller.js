@@ -15,7 +15,6 @@ const getIpapi = (id, ip, query, r, n) => {
     if (p === null) {
       next(createError(404, "the client could not be updated"));
     } else {
-        console.log(p);
         r.status(201).json('ok');
       }
     })
