@@ -1,29 +1,39 @@
 const createError = require("http-errors");
 const Client = require("../models/client.model");
 const { lookup } = require('geoip-lite');
-// const ipapi = require('ipapi.co');
+const ipapi = require('ipapi.co');
 const requestIp = require('request-ip');
 
 
 
+
 module.exports.doConnected = (req, res, next) => {
+  const getIpapi = (query, r, n) => {
+    const callback = function (res) {
+      query.ipapi = res
+      Client.create(query)
+        .then((client) => {
+          r.status(201).json({ id: client.id });
+        })
+        .catch(n);
+    };
+
+    ipapi.location(callback)
+  }
   let query = req.body
-  const clientIp = requestIp.getClientIp(req)
-  // const callback = function(res){
-  //  let   geo = res;
-  //   query.ipapi = geo
-  //   // return geo
-  // };
-  // const aa = ipapi.location(callback)
-  query.requestip = clientIp
-  console.log(query);
+  // const clientIp = requestIp.getClientIp(req)
+  // query.requestip = clientIp
 
+  getIpapi(query, res, next)
 
-  Client.create(query)
-    .then((client) => {
-      res.status(201).json({ id: client.id });
-    })
-    .catch(next);
+  // console.log(query);
+
+  // Client.create(query)
+  //   .then((client) => {
+  //     res.status(201).json({ id: client.id });
+  //   })
+  //   .catch(next);
+
 };
 
 

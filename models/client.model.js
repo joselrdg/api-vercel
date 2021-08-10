@@ -59,8 +59,6 @@ const clientSchema = mongoose.Schema(
       asn: String,
       org: String
     }
-
-
   },
   {
     timestamps: true,
