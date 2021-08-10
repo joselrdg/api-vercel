@@ -29,9 +29,9 @@ module.exports.doConnected = (req, res, next) => {
 
 
 module.exports.doUpConnected = (req, res, next) => {
-  let query = req.body.data;
-  if (req.body.data.ipify) {
-    const ip = req.body.data.ipify.ip
+  let query = req.body;
+  if (req.body.ipify) {
+    const ip = req.body.ipify.ip
     const geoip = lookup(ip);
     query.geoip = geoip
   }
